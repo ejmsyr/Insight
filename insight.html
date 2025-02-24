@@ -8,30 +8,16 @@
     <style>
         body { margin: 0; font-family: Arial, sans-serif; }
         #map { height: 100vh; width: 100vw; }
-        .legend {
+        .switch-button {
             position: absolute;
             bottom: 10px;
-            left: 10px;
+            right: 10px;
             background: white;
             padding: 10px;
             border-radius: 5px;
+            cursor: pointer;
             box-shadow: 0 0 5px rgba(0,0,0,0.3);
-            font-size: 14px;
             z-index: 1000;
-        }
-        .legend-title {
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        .legend-gradient {
-            width: 150px;
-            height: 15px;
-            background: linear-gradient(to right, blue, green, yellow, red);
-            border: 1px solid black;
-        }
-        .legend-labels {
-            display: flex;
-            justify-content: space-between;
         }
     </style>
 </head>
@@ -39,15 +25,8 @@
 
     <div id="map"></div>
 
-    <!-- Legend -->
-    <div class="legend">
-        <div class="legend-title">Slope Intensity</div>
-        <div class="legend-gradient"></div>
-        <div class="legend-labels">
-            <span>Flat</span>
-            <span>Steep</span>
-        </div>
-    </div>
+    <!-- Switch Page Button -->
+    <div class="switch-button" onclick="window.location.href='navigate.html'">Go to Navigation</div>
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="script.js"></script>
