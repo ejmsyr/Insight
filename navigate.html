@@ -43,8 +43,20 @@
             border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
-            display: none;
             max-width: 40%;
+            display: none;
+        }
+        .back-button {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: #007aff;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1100;
         }
         button {
             font-size: 16px;
@@ -67,10 +79,12 @@
 </head>
 <body>
     <div id="map"></div>
+    <div class="back-button" onclick="window.location.href='index.html'">← Back</div>
     <div class="controls">
         <label for="timeInput">Enter Time (min):</label>
         <input type="number" id="timeInput" placeholder="Time in minutes" style="font-size: 16px; width: 100%;">
         <button onclick="findDestinations()">Find Routes</button>
+        <button onclick="toggleInfoBox()">Show/Hide Route Info</button>
     </div>
     <div class="info-box" id="infoBox">
         <h4>Best Decline Route</h4>
@@ -85,6 +99,11 @@
     <script>
         function updateAppleMapsLink(lat, lon) {
             document.getElementById("appleMapsLink").href = `https://maps.apple.com/?daddr=${lat},${lon}&dirflg=b`;
+        }
+        
+        function toggleInfoBox() {
+            const infoBox = document.getElementById("infoBox");
+            infoBox.style.display = infoBox.style.display === "none" ? "block" : "none";
         }
     </script>
 </body>
