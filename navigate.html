@@ -2,59 +2,82 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Navigation Map</title>
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Navigation App">
     <style>
-        body { margin: 0; font-family: Arial, sans-serif; }
-        #map { height: 100vh; width: 100vw; }
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        #map {
+            height: 100vh;
+            width: 100vw;
+            will-change: transform;
+        }
         .controls {
             position: absolute;
             bottom: 20px;
             left: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
+            backdrop-filter: blur(10px);
         }
         .info-box {
             position: absolute;
             bottom: 20px;
             right: 20px;
-            background: white;
-            padding: 10px;
-            border-radius: 5px;
-            box-shadow: 0 0 5px rgba(0,0,0,0.3);
+            background: rgba(255, 255, 255, 0.9);
+            padding: 12px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
             display: none;
         }
-
+        button {
+            font-size: 16px;
+            padding: 10px 14px;
+            border: none;
+            background: #007aff;
+            color: white;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        button:active {
+            background: #005ecb;
+        }
     </style>
 </head>
 <body>
-
     <div id="map"></div>
-    
     <div class="controls">
         <label for="timeInput">Enter Time (min):</label>
-        <input type="number" id="timeInput" placeholder="Time in minutes">
+        <input type="number" id="timeInput" placeholder="Time in minutes" style="font-size: 16px;">
         <button onclick="findDestinations()">Find Routes</button>
     </div>
-
     <div class="info-box" id="infoBox">
         <h4>Best Decline Route</h4>
         <p><strong>Distance:</strong> <span id="distance"></span> miles</p>
         <p><strong>Total Decline:</strong> <span id="decline"></span> feet</p>
         <p><strong>Feet Dropped per Mile:</strong> <span id="declinePerMile"></span> ft/mi</p>
-        <a id="googleMapsLink" href="#" target="_blank">Open in Google Maps</a>
+        <a id="googleMapsLink" href="#" target="_blank">Open in Google Maps</a> |
+        <a id="appleMapsLink" href="#" target="_blank">Open in Apple Maps</a>
     </div>
-
-
-
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-    <script src="https://unpkg.com/leaflet-routing-machine/dist/leaflet-routing-machine.js"></script>
     <script src="navi.js"></script>
-
+    <script>
+        function updateAppleMapsLink(lat, lon) {
+            document.getElementById("appleMapsLink").href = `maps://?daddr=${lat},${lon}&dirflg=b`;
+        }
+    </script>
 </body>
 </html>
