@@ -15,6 +15,7 @@
             font-family: -apple-system, BlinkMacSystemFont, sans-serif;
             -webkit-tap-highlight-color: transparent;
             touch-action: manipulation;
+            overflow: hidden;
         }
         #map {
             height: 100vh;
@@ -24,24 +25,26 @@
         .controls {
             position: fixed;
             bottom: 20px;
-            left: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 12px;
-            border-radius: 10px;
+            left: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
             backdrop-filter: blur(10px);
+            max-width: 40%;
         }
         .info-box {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 12px;
-            border-radius: 10px;
+            top: 20px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 10px;
+            border-radius: 8px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             z-index: 1000;
             display: none;
+            max-width: 40%;
         }
         button {
             font-size: 16px;
@@ -51,9 +54,14 @@
             color: white;
             border-radius: 8px;
             cursor: pointer;
+            width: 100%;
         }
         button:active {
             background: #005ecb;
+        }
+        .info-box a {
+            display: block;
+            margin-top: 8px;
         }
     </style>
 </head>
@@ -61,7 +69,7 @@
     <div id="map"></div>
     <div class="controls">
         <label for="timeInput">Enter Time (min):</label>
-        <input type="number" id="timeInput" placeholder="Time in minutes" style="font-size: 16px;">
+        <input type="number" id="timeInput" placeholder="Time in minutes" style="font-size: 16px; width: 100%;">
         <button onclick="findDestinations()">Find Routes</button>
     </div>
     <div class="info-box" id="infoBox">
@@ -69,14 +77,14 @@
         <p><strong>Distance:</strong> <span id="distance"></span> miles</p>
         <p><strong>Total Decline:</strong> <span id="decline"></span> feet</p>
         <p><strong>Feet Dropped per Mile:</strong> <span id="declinePerMile"></span> ft/mi</p>
-        <a id="googleMapsLink" href="#" target="_blank">Open in Google Maps</a> |
+        <a id="googleMapsLink" href="#" target="_blank">Open in Google Maps</a>
         <a id="appleMapsLink" href="#" target="_blank">Open in Apple Maps</a>
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="navi.js"></script>
     <script>
         function updateAppleMapsLink(lat, lon) {
-            document.getElementById("appleMapsLink").href = `maps://?daddr=${lat},${lon}&dirflg=b`;
+            document.getElementById("appleMapsLink").href = `https://maps.apple.com/?daddr=${lat},${lon}&dirflg=b`;
         }
     </script>
 </body>
