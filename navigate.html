@@ -95,14 +95,10 @@
         <p><strong>Total Decline:</strong> <span id="decline"></span> feet</p>
         <p><strong>Feet Dropped per Mile:</strong> <span id="declinePerMile"></span> ft/mi</p>
         <a id="googleMapsLink" href="#" target="_blank">Open in Google Maps</a>
-        <a id="appleMapsLink" href="#" target="_blank">Open in Apple Maps</a>
     </div>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script src="navi.js"></script>
     <script>
-        function updateAppleMapsLink(lat, lon) {
-            document.getElementById("appleMapsLink").href = `https://maps.apple.com/?daddr=${lat},${lon}&dirflg=b`;
-        }
         
         function toggleInfoBox() {
             const infoBox = document.getElementById("infoBox");
